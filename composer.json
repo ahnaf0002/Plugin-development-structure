@@ -1,0 +1,17 @@
+{
+    "name": "a2z/yoast-focus-kw-auto-complete",
+    "description": "Awesome starter plugin",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "ahnaf0002",
+            "email": "ahnaf0002@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {"Inc\\": "./inc"}
+    }
+}
