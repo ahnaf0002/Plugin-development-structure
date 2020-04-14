@@ -1,1 +1,1 @@
-<h1>Yoast Focus Kw Autocomplete Plugin</h1>
+<h1>Yoast Focus Kw Autocomplete Plugins</h1>
