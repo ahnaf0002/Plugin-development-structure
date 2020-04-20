@@ -13,8 +13,8 @@ use \Inc\Api\Callbacks\AdminCallbacks;
 class Admin extends BaseController
 {
 
-    public $settings;
-    public $pages = array();
+    public $settings;        //variable created to store data to create SettingsApi() 
+    public $pages = array(); //foreach arrays value passed by $this->admin_pages = $pages or $pages 01...
     public $subpages = array(); 
     public $callbacks;
 
@@ -22,10 +22,17 @@ class Admin extends BaseController
     {
         $this->settings = new SettingsApi();
         $this->callbacks = new AdminCallbacks();
-        $this->setPages();
-        $this->setSubPages();
+        $this->setPages();    //ref. hints: initialize - 01 
+        $this->setSubPages(); //ref. hints:02
+        $this->setSettings(); //ref. 03>01>01
+        $this->setSections(); //ref. 03>01>02
+        $this->setFields();   //ref. 03>01>01
+
+        //method chaining for SettingsAppi - 01... + 
         $this->settings->addPages($this->pages)->withSubPage('Dashboard')->addSubPages($this->subpages)->register();
     }
+
+    //Ref. need to load data for ['page_title'] or others arrays values from SettingsApi 01...
     public function setPages(){
         $this->pages = array(
             array(
@@ -40,6 +47,10 @@ class Admin extends BaseController
         );
 
     }
+    //Ref.finish. need to load data for ['page_title'] or others arrays values from SettingsApi 01...
+
+
+    //hints: 02...
     public function setSubPages()
     {
         $this->subpages = array(
@@ -74,5 +85,72 @@ class Admin extends BaseController
 
         );
         
+    }
+
+    //ref: 03>01>01
+    public function setSettings(){
+        $args = array(
+            array(
+                'option_group'=>'yoast_focus_kw_auto_complete_option_group',
+                'option_name' =>'first_name',
+
+            ),
+            array(
+                'option_group'=>'yoast_focus_kw_auto_complete_option_group',
+                'option_name' =>'text_example',
+                'callback'    => array($this->callbacks, 'yoastOptionsGroup'),
+
+            )
+            
+        );
+        $this->settings->setSettings($args);
+    }
+
+
+    //ref: 03>01>02
+    public function setSections(){
+        $args = array(
+            array(
+                'id'          =>'yoast_focus_kw_auto_complete_admin_index',
+                'title'       =>'Settings',
+                'callback'    => array($this->callbacks, 'yoastAdminSections'),
+                'page'        => 'yoast_focus_kw_auto_complete'
+
+            )
+        );
+        $this->settings->setSections($args);
+    }
+
+    //ref: 03>01>03
+    public function setFields(){
+        $args = array(
+            array(
+                'id'          =>'text_example',
+                'title'       =>'text example',
+                'callback'    => array($this->callbacks, 'yoastTextExample'),
+                'page'        => 'yoast_focus_kw_auto_complete',
+                'section'     => 'yoast_focus_kw_auto_complete',
+                'section'     => 'yoast_focus_kw_auto_complete_admin_index',
+                'args'        => array(
+                    'label-for'   =>'text_example',
+                    'class'       =>'example-class'
+                )
+
+                ),
+                array(
+                    'id'          =>'first_name',
+                    'title'       =>'First Name',
+                    'callback'    => array($this->callbacks, 'yoastFirstName'),
+                    'page'        => 'yoast_focus_kw_auto_complete',
+                    'section'     => 'yoast_focus_kw_auto_complete',
+                    'section'     => 'yoast_focus_kw_auto_complete_admin_index',
+                    'args'        => array(
+                        'label-for'   =>'first_name',
+                        'class'       =>'example-class'
+                    )
+    
+                )
+        );
+        $this->settings->setFields($args);
     }
 }
