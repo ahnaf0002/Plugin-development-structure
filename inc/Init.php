@@ -17,9 +17,19 @@
         # code...
 
         return array(
-            Pages\Admin::class,
+            Pages\Dashboard::class,
             Base\Enqueue::class,
-            Base\SettingsLinks::class
+            Base\SettingsLinks::class,
+            Base\CustomPostTypesController::class,
+            Base\TaxonomiController::class,
+            Base\MediaController::class,
+            Base\GalleryController::class,
+            Base\TestimonialController::class,
+            Base\TemplatesController::class,
+            Base\LoginController::class,
+            Base\MembershipController::class,
+            Base\ChatController::class
+           
         );
     }
 
@@ -40,6 +50,8 @@
          }
          
      }
+
+     
 
      /**
      * initialize the class

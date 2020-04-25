@@ -15,20 +15,42 @@ class AdminCallbacks extends BaseController{
     public function adminCPT(){
         return require_once("$this->plugin_path/templates/cpt.php");
     }
-    public function adminTaxonomy(){
-        return require_once("$this->plugin_path/templates/taxonomy.php");
+    public function adminTaxonomi(){
+        return require_once("$this->plugin_path/templates/taxonomi.php");
     }
     public function adminWidget(){
         return require_once("$this->plugin_path/templates/widget.php");
     }
-    public function yoastOptionsGroup($input)
-    {
-        return $input;
+    
+    public function adminChat(){
+        return require_once("$this->plugin_path/templates/chat.php");
     }
-    public function yoastAdminSections()
-    {
-        echo "Check this beautiful sections";
+    public function adminGallery(){
+        return require_once("$this->plugin_path/templates/gallery.php");
     }
+    public function adminLogin(){
+        return require_once("$this->plugin_path/templates/login.php");
+    }
+    public function adminMedia(){
+        return require_once("$this->plugin_path/templates/media.php");
+    }
+    public function adminMembership(){
+        return require_once("$this->plugin_path/templates/membership.php");
+    }
+    public function adminTemplates(){
+        return require_once("$this->plugin_path/templates/templates.php");
+    }
+    public function adminTestimonial(){
+        return require_once("$this->plugin_path/templates/testimonial.php");
+    }
+    // public function yoastOptionsGroup($input)
+    // {
+    //     return $input;
+    // }
+    // public function yoastAdminSections()
+    // {
+    //     echo "Check this beautiful sections";
+    // }
     public function yoastTextExample()
     {
         $value = esc_attr(get_option('text_example'));

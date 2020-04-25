@@ -17,7 +17,7 @@
             <form method="post" action="options.php">
                 <?php
 
-                settings_fields('yoast_focus_kw_auto_complete_option_group');
+                settings_fields('yoast_focus_kw_auto_complete_settings');
                 do_settings_sections('yoast_focus_kw_auto_complete');
                 submit_button();
 
