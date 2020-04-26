@@ -19,7 +19,9 @@ class CptCallbacks
 		$output = get_option('yoast_focus_kw_auto_complete_cpt');
 
 		foreach ($output as $key => $value) {
-			if ($input['post_type'] === $key) { 
+			if ($input['post_type'] = $key) {
+				var_dump($key);
+				die();
 				$output[$key] = $input;
 			} else {
 				$output[$input['post_type']] = $input;
@@ -34,8 +36,9 @@ class CptCallbacks
 		$name = $args['label_for'];
 		$option_name = $args['option_name'];
 		$input = get_option( $option_name );
+		 
 
-		echo '<input type="text" class="regular-text" id="' . $name . '" name="' . $option_name . '[' . $name . ']" value="" placeholder="' . $args['placeholder'] . '">';
+		echo '<input type="text" class="regular-text" id="' . $name . '" name="' . $option_name . '[test][' . $name . ']" value="" placeholder="' . $args['placeholder'] . '">';
 	}
 
 	public function checkboxField( $args )
@@ -44,7 +47,8 @@ class CptCallbacks
 		$classes = $args['class'];
 		$option_name = $args['option_name'];
 		$checkbox = get_option( $option_name );
+		
 
-		echo '<div class="' . $classes . '"><input type="checkbox" id="' . $name . '" name="' . $option_name . '[' . $name . ']" value="1" class=""><label for="' . $name . '"><div></div></label></div>';
+		echo '<div class="' . $classes . '"><input type="checkbox" id="' . $name . '" name="' . $option_name . '[test][' . $name . ']" value="1" class=""><label for="' . $name . '"><div></div></label></div>';
 	}
 }
